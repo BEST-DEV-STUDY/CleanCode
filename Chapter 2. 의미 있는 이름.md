@@ -1,4 +1,25 @@
+
 ## Chapter 2. 의미 있는 이름
+
+- [Chapter 2. 의미 있는 이름](#chapter-2-의미-있는-이름)
+  - [의도를 분명히 밝혀라](#의도를-분명히-밝혀라)
+  - [그릇된 정보를 피하라](#그릇된-정보를-피하라)
+  - [의미 있게 구분하라](#의미-있게-구분하라)
+  - [발음하기 쉬운 이름을 사용하라](#발음하기-쉬운-이름을-사용하라)
+  - [검색하기 쉬운 이름을 사용하라](#검색하기-쉬운-이름을-사용하라)
+  - [인코딩을 피하라 -\> 옛날 방식으로 보여 패스](#인코딩을-피하라---옛날-방식으로-보여-패스)
+  - [자신의 기억력을 자랑하지 마라](#자신의-기억력을-자랑하지-마라)
+  - [클래스 이름](#클래스-이름)
+  - [메서드 이름](#메서드-이름)
+  - [기발한 이름은 피하라](#기발한-이름은-피하라)
+  - [한 개념에 한 단어를 사용하라](#한-개념에-한-단어를-사용하라)
+  - [해법 영역/문제 영역에서 가져온 이름을 사용하라](#해법-영역문제-영역에서-가져온-이름을-사용하라)
+  - [의미 있는 맥락을 추가하라](#의미-있는-맥락을-추가하라)
+  - [\[참고\]](#참고)
+      - [루프속 i j k 자제](#루프속-i-j-k-자제)
+  - [마치면서](#마치면서)
+  - [Review](#review)
+
 
 
 ### 의도를 분명히 밝혀라
@@ -90,7 +111,7 @@ public static void copyChars(char a1[], char a2[]) {
   - 함수 인수 이름을 source와 destination으로 변경한다면 훨씬 더 코드 읽기가 쉬울 것이다.
 
 ```
-getActiveAccount vs getActiveAxcounts vs getActiveAccountInfo
+getActiveAccount vs getActiveAccounts vs getActiveAccountInfo
 moneyAmount vs money
 customerInfo vs customer
 accountData vs account
@@ -176,9 +197,9 @@ theMessage vs message
 - ex : addrFirstName, addrLastName, addrState
     - Address라는 클래스를 생성하면 더 좋다.변수가 좀 더 큰 개념에 속한다는 사실이 컴파일러에게도 분명해진다.
 
-#### [참고]
+### [참고]
 
-###### 루프속 i j k 자제
+##### 루프속 i j k 자제
 
 ```java
 //bad
@@ -199,3 +220,16 @@ messages.stream().forEach(
 
 - 코드를 개선하려는 노력을 중단해서는 안된다.
 - 이 장에서 소개한 규칙 몇 개를 적용해 코드 가독성이 높아지는지 살펴보라.
+
+### Review
+
+- "불용어를 추가한 이름 역시 아무런 정보도 제공하지 못함을 볼 수 있다"에서 지적한 대로 아무 의미 없이 info, data를 붙인 경우가 있는지 살펴보았다.
+
+```
+BrandDetailIntroduction vs BrandDetailInfo // `읽는 사람이 차이를 알도록 이름을 지어야한다.` 에 배반됨
+useProfile vs useProfiles // api에 주로 사용되며 단수, 복수의 의미를 갖고 있기 때문에 잘못되었다고 생각되지는 않음
+```
+
+- "해법 영역/문제 영역에서 가져온 이름을 사용하라"에 더하여 기획/BE와 이름을 맞추는 것도 중요하다 생각한다. UI와 관련된 grid, virtual 등은 FE에서 마음대로 작명해도 되지만 domain, api field 이름은 기획/BE와 맞추는 게 추후 소통이 편하고 api랑 FE코드랑 합도 맞는다.
+
+- 저는 주로 이름을 짓기 어려울 때, 유의어 사전인 [thesaurus](https://www.thesaurus.com/)를 사용하거나 chatGpt한테 물어봅니다.
