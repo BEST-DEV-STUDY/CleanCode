@@ -469,3 +469,65 @@ private void deletePageAndAllReferences(Page page) throws Exception { // 기능�
   - 메서드를 줄이고 순서를 바꾼다
   - 때로는 전체 클래스를 쪼개기도 한다
 - 위 단계를 거치는 와중에도 항상 단위 테스트를 통과한다
+
+## Review
+
+- 함수는 `한 가지`를 해야 한다. 그 `한 가지`를 잘 해야 한다. 그 `한 가지`만을 해야 한다.
+
+좋지 않은 함수 예시
+
+```ts
+  private __walk(
+    direction: Direction,
+    prevRowIndex: number,
+    prevColIndex: number
+  ): Position {
+    let nextRowIndex = prevRowIndex;
+    let nextColIndex = prevColIndex;
+    const prevPath = table[nextRowIndex][nextColIndex];
+
+    switch (direction) {
+      case 'up':
+        nextRowIndex -= 1;
+        if (nextRowIndex < 0) return prevPath;
+        break;
+      case 'down':
+        nextRowIndex += 1;
+        if (nextRowIndex >= maxTableRowLength) return prevPath;
+        break;
+      case 'left':
+        nextColIndex -= 1;
+        // 현재 열이 0번째 index이면서, 이전 행이 존재하는 경우, 이전 행의 마지막 열로 이동합니다.
+        if (nextRowIndex > 0 && nextColIndex < 0) {
+          nextRowIndex -= 1;
+          nextColIndex = maxTableColumnLength - 1;
+        } else if (nextColIndex < 0) return prevPath;
+        break;
+      case 'right':
+        nextColIndex += 1;
+        // 현재 열이 마지막 index이면서, 다음 행이 존재하는 경우, 다음 행의 첫 열로 이동합니다.
+        if (nextRowIndex < maxTableRowLength - 1 && nextColIndex >= maxTableColumnLength) {
+          nextRowIndex += 1;
+          nextColIndex = 0;
+        }
+        else if (nextColIndex >= maxTableColumnLength) return prevPath;
+        break;
+      default:
+        break;
+    }
+    return [nextRowIndex, nextColIndex];
+  }
+```
+
+```ts
+public checkMaxSize({ files, callback }) {
+  files.forEach((file) => {
+      if (file.size > this.__fileOption.maxSize) {
+        alert(this.__fileOption.maxSizeMessage);
+        return;
+      }
+
+      callback(file);
+    });
+}
+```
