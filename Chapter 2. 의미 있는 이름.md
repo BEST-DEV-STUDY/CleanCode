@@ -18,7 +18,6 @@
   - [\[참고\]](#참고)
       - [루프속 i j k 자제](#루프속-i-j-k-자제)
   - [마치면서](#마치면서)
-  - [Review](#review)
 
 
 
@@ -220,16 +219,3 @@ messages.stream().forEach(
 
 - 코드를 개선하려는 노력을 중단해서는 안된다.
 - 이 장에서 소개한 규칙 몇 개를 적용해 코드 가독성이 높아지는지 살펴보라.
-
-### Review
-
-- "불용어를 추가한 이름 역시 아무런 정보도 제공하지 못함을 볼 수 있다"에서 지적한 대로 아무 의미 없이 info, data를 붙인 경우가 있는지 살펴보았다.
-
-```
-BrandDetailIntroduction vs BrandDetailInfo // `읽는 사람이 차이를 알도록 이름을 지어야한다.` 에 배반됨
-useProfile vs useProfiles // api에 주로 사용되며 단수, 복수의 의미를 갖고 있기 때문에 잘못되었다고 생각되지는 않음
-```
-
-- "해법 영역/문제 영역에서 가져온 이름을 사용하라"에 더하여 기획/BE와 이름을 맞추는 것도 중요하다 생각한다. UI와 관련된 grid, virtual 등은 FE에서 마음대로 작명해도 되지만 domain, api field 이름은 기획/BE와 맞추는 게 추후 소통이 편하고 api랑 FE코드랑 합도 맞는다.
-
-- 저는 주로 이름을 짓기 어려울 때, 유의어 사전인 [thesaurus](https://www.thesaurus.com/)를 사용하거나 chatGpt한테 물어봅니다.
