@@ -23,7 +23,7 @@ public interface Vehicle {
 -   자료 구조는 자료를 그대로 공개, 추가로 다루는 함수는 따로 제공하지 않는다.
 -  객체 지향(객체 사용)에서 어려운 변경은 절차지향(자료구조 사용)에서 쉽고, 절차지향에서 어려운 변경은 객체지향에서 쉽다.
 
-###디미터 법칙
+### 디미터 법칙
 
 - 추상화를 하기 위해 지켜야 할 법칙으로, 메소드가 반환하는 객체의 메소드를 사용하면 안 된다.
 - 디미터 법칙을 지키지 않을 때는 “기차충돌"이 일어나게 된다.
@@ -62,3 +62,17 @@ String outputDir = ctxt.getOptions().getScratchDir().getAbsolutePath();
 
 객체와 자료구조의 책임을 명확하게 하고, 각각 에 맞는 역할을 맡기자.
 
+
+### 개인적인 경험
+
+- 객체와  자료구조의  파일을  분리 (DTO 는 meta 또는 hook 파일에서 처리)
+- 직접적인 구현과 멍청한 컴포넌트 분리
+  ex) URL 로 필터링
+  page - urlSearchParams 를 가져와 DTO 에 맞는 객체를 만드는 작업
+  chipList - params 가져오는 책임없이 params 삭제 책임만 있음
+  chip - 구현은 모르고 멍청한 버튼
+  view 에 보이는 label 은 자료구조로 분리
+```
+<Chip onDelete={onChipClick}/> (x)
+<Chip onClick={onChipClick}/> (0)
+``` 
