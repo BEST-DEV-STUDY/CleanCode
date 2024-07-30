@@ -74,7 +74,7 @@ const Sql = () => {
     const { createCb } = useCreateSql();
     const { insertCb } = useInsertSql();
     const { selectCb } = useSelectSql();
-    .... 
+    ...
 }
 ```
 createSql 을 수정할 때는 다른 useInsertSql(), useSelectSql() hook 에 영향이 가지 았고, 
@@ -82,5 +82,13 @@ createSql 을 수정할 때는 다른 useInsertSql(), useSelectSql() hook 에 �
 ```js
   const { findBySqlCb } = useFindBySql(); 
 ```
-새로운 hook을 추가해도 다른 hook에 영향이 가지 않기 떄문에 OCP 원칙을 잘 지킨 코드가 됩니다. 
+새로운 hook을 추가해도 다른 hook에 영향이 가지 않기 떄문에 OCP 원칙을 잘 지킨 코드가 됩니다.
+
+결합도를 낮춘 코드, 즉 추상화된 코드는 정확한 테스트코드를 작성하기도 쉬워집니다. 
+
+```js
+ const Portfolio = () => {
+    const { data : { seoulStockPrice } } = useSeoulStockExchange();
+}
+```
 
